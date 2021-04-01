@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "serve": "ng serve",
+    "start": "ts-node-dev ./server.ts",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -19,7 +20,9 @@
     "@angular/platform-browser": "~11.2.1",
     "@angular/platform-browser-dynamic": "~11.2.1",
     "@angular/router": "~11.2.1",
+    "express": "^4.17.1",
     "rxjs": "~6.6.0",
+    "ts-node-dev": "^1.1.6",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
