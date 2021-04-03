@@ -1,0 +1,92 @@
+<clr-datagrid
+  (clrDgRefresh)="refresh($event)"
+  *ngIf="data"
+  class="datagrid-compact"
+>
+  <clr-dg-column [clrDgField]="'country'">
+    <span translate>Country</span>
+    <clr-dg-filter [clrDgFilter]="countryFilter">
+      <app-dg-select-filter
+        #countryFilter
+        [values]="countries$ | async"
+        [param]="country"
+      ></app-dg-select-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'name'">
+    <span translate>Name</span>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'region'">
+    <span translate> Region </span>
+  </clr-dg-column>
+  <clr-dg-column [clrDgSortBy]="'totalSlopes'">
+    <span translate>Total slopes length</span>
+  </clr-dg-column>
+  <clr-dg-column [clrDgSortBy]="'blueSlopes'">
+    <span translate>Blue slopes length</span>
+  </clr-dg-column>
+  <clr-dg-column [clrDgSortBy]="'redSlopes'">
+    <span translate>Red slopes length</span>
+  </clr-dg-column>
+  <clr-dg-column>
+    <span translate>Day ski pass price</span>
+  </clr-dg-column>
+  <clr-dg-row
+    *ngFor="let resort of data.resorts; trackBy: trackById"
+    (mouseenter)="onMouseEnter(resort)"
+    (mouseleave)="onMouseLeave(resort)"
+    [class.highlit]="resort.id === (hoveredOnMap$ | async)?.id"
+    [class.clicked]="resort.id === (selectedOnMap$ | async)?.id"
+  >
+    <clr-dg-cell>{{ resort.country | translate }}</clr-dg-cell>
+    <clr-dg-cell>
+      <a [href]="resort.name | mapLink" target="_blank">
+        <cds-icon shape="map"></cds-icon>
+      </a>
+      <!-- @FIXME resort names containing HTML entities (e.g. Cortina d&#039;Ampezzo)  -->
+      <cds-icon
+        shape="copy-to-clipboard"
+        class="widget"
+        [cdkCopyToClipboard]="resort.name"
+      ></cds-icon>
+      <a [href]="resort.mainLink" target="_blank">
+        {{ resort.name }}
+      </a>
+    </clr-dg-cell>
+    <clr-dg-cell>
+      <a
+        [routerLink]="[]"
+        [queryParams]="{ region: resort.region }"
+        [queryParamsHandling]="'merge'"
+      >
+        {{ resort.region }}
+      </a>
+    </clr-dg-cell>
+    <clr-dg-cell>{{ resort.totalSlopes }}</clr-dg-cell>
+    <clr-dg-cell>{{ resort.blueSlopes }}</clr-dg-cell>
+    <clr-dg-cell>{{ resort.redSlopes }}</clr-dg-cell>
+    <clr-dg-cell>{{ resort.price }}</clr-dg-cell>
+  </clr-dg-row>
+  <clr-dg-footer>
+    <clr-dg-pagination
+      [clrDgPageSize]="DEFAULT_PAGE_SIZE"
+      [(clrDgPage)]="data.currentPage"
+      [clrDgTotalItems]="data.totalItems"
+      #pagination
+    >
+      <!--      <clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]">-->
+      <!--        <span translate>Rows per page</span>-->
+      <!--      </clr-dg-page-size>-->
+      <span
+        translate
+        [translateParams]="{
+          from: pagination.firstItem + 1,
+          to: pagination.lastItem + 1,
+          total: data.totalItems
+        }"
+        >Total resorts</span
+      >
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
+<app-resorts-map *ngIf="data" [resorts]="data.resorts"></app-resorts-map>

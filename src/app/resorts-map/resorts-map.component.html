@@ -1,0 +1,18 @@
+<div
+  *ngIf="options"
+  class="map"
+  leaflet
+  [leafletOptions]="options"
+  [(leafletCenter)]="center"
+  #mapRef
+>
+  <app-marker
+    *ngFor="let resort of resorts; let i = index; trackBy: trackById"
+    [defaultOpacity]="0.5"
+    [accentOpacity]="1"
+    [resort]="resort"
+    (markerClick)="selectResort(resort)"
+    (markerMouseEnter)="hover(resort)"
+    (markerMouseLeave)="hover(null)"
+  ></app-marker>
+</div>

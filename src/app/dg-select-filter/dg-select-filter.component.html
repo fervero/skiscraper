@@ -1,0 +1,19 @@
+<clr-checkbox-container class="checkboxes">
+  <clr-checkbox-wrapper
+    *ngFor="let item of values"
+    (change)="onCheckboxChange()"
+  >
+    <input
+      type="checkbox"
+      clrCheckbox
+      name="options"
+      [value]="item"
+      [(ngModel)]="valuesDictionary[item]"
+    />
+    <label>{{ item | translate }}</label>
+  </clr-checkbox-wrapper>
+</clr-checkbox-container>
+
+<button class="btn btn-sm" (click)="reset()" [disabled]="!selectValue">
+  Reset
+</button>

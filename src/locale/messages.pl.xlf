@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="6409973555524236786" datatype="html">
+        <source>Country <x id="START_TAG_CLR_DG_FILTER" ctype="x-clr_dg_filter" equiv-text="&lt;clr-dg-filter [clrDgFilter]=&quot;myFilter&quot;&gt;"/><x id="START_TAG_APP_DG_SELECT_FILTER" ctype="x-app_dg_select_filter" equiv-text="&lt;app-dg-select-filter #myFilter [values]=&quot;countries$ | async&quot;&gt;"/><x id="CLOSE_TAG_APP_DG_SELECT_FILTER" ctype="x-app_dg_select_filter" equiv-text="&lt;/app-dg-select-filter&gt;"/><x id="CLOSE_TAG_CLR_DG_FILTER" ctype="x-clr_dg_filter" equiv-text="&lt;/clr-dg-filter&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/resorts/resorts.component.html</context>
+          <context context-type="linenumber">7,10</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

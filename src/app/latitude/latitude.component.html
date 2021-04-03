@@ -1,0 +1,12 @@
+<span *ngIf="resort.latitude">{{ resort.latitude }}</span>
+<cds-icon
+  *ngIf="!resort.latitude && !isLoading"
+  shape="eye"
+  class="widget"
+  (click)="getCoordinates(resort.id)"
+></cds-icon>
+<clr-spinner
+  [clrSmall]="true"
+  [clrInline]="true"
+  *ngIf="isLoading"
+></clr-spinner>

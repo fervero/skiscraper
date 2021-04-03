@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+
+.datagrid-filter .clr-form-control {
+  margin-top: 0;
+}
+
+.datagrid-table .datagrid-column .datagrid-column-flex {
+  align-items: center;
+}
+
+.datagrid-table .datagrid-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.datagrid-filter {
+  transition: 0ms outline-color;
+  outline: 0;
+}
+
+.datagrid-filter:focus {
+  outline-color: #222;
+  transition-delay: 1s;
+}
+
+.spinner.spinner-inline, .spinner.spinner-sm {
+  height: .65rem;
+  width: .65rem;
+  min-height: .65rem;
+  min-width: .65rem;
+}
+
+h1.title-bar {
+  margin-top: .5rem;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  padding-left: 1rem;
+  font-weight: 600;
+}
+
+h1.title-bar a {
+  color: #444;
+}
+
+h1.title-bar a:hover {
+  text-decoration: none;
+}
