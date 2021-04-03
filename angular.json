@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "heroku1": {
+    "skiscraper-front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/heroku1",
+            "outputPath": "dist/skiscraper-front",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,6 +24,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@clr/ui/clr-ui.min.css",
+              "node_modules/leaflet/dist/leaflet.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -61,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "heroku1:build"
+            "browserTarget": "skiscraper-front:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "heroku1:build:production"
+              "browserTarget": "skiscraper-front:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "heroku1:build"
+            "browserTarget": "skiscraper-front:build"
           }
         },
         "test": {
@@ -109,16 +111,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "heroku1:serve"
+            "devServerTarget": "skiscraper-front:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "heroku1:serve:production"
+              "devServerTarget": "skiscraper-front:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "heroku1"
+  "defaultProject": "skiscraper-front"
 }

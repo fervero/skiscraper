@@ -13,7 +13,7 @@ function requireHTTPS(req, res, next) {
 const app = express();
 app.use(requireHTTPS);
 
-const pathToDist = path.join(__dirname, 'dist', 'heroku1');
+const pathToDist = path.join(__dirname, 'dist', 'skiscraper-front');
 
 app.use(express.static(pathToDist));
 
