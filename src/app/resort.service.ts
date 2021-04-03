@@ -21,8 +21,6 @@ import { map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { mockResorts } from './mock-data/resorts';
 
-console.log(mockResorts);
-
 @Injectable({
   providedIn: 'root',
 })

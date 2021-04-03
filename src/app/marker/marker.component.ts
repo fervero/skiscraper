@@ -11,8 +11,8 @@ import { Resort } from '../interfaces/resort';
 import { Select, Store } from '@ngxs/store';
 import { ResortState } from '../state/resort.state';
 import { Observable } from 'rxjs';
-import { marker, Marker } from 'leaflet';
-import { distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { marker, icon, Marker } from 'leaflet';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 
 interface MarkerParams {
   latitude: number;
@@ -85,7 +85,15 @@ export class MarkerComponent implements OnInit {
     longitude,
     opacity,
   }: MarkerParams): Marker => {
-    return new marker([+latitude, +longitude], { opacity })
+    return new marker([+latitude, +longitude], {
+      opacity,
+      icon: icon({
+        iconSize: [25, 41],
+        iconAnchor: [13, 41],
+        iconUrl: 'assets/marker-icon.png',
+        shadowUrl: 'assets/marker-shadow.png',
+      }),
+    })
       .on('click', this.onClick)
       .on('mouseover', this.onMouseEnter)
       .on('mouseout', this.onMouseLeave);
