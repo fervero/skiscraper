@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
-
 type callback = (argument?: any) => void;
+
+const heroku = process.env.ENVIRONMENT === 'heroku';
 
 export function requireHTTPS(
   req: Request,
@@ -18,4 +19,6 @@ export function requireHTTPS(
 const pathToDist = path.join(__dirname, '..', 'dist', 'skiscraper-front');
 const serveStaticFiles = express.static(pathToDist);
 
-export const middleware = [requireHTTPS, serveStaticFiles];
+export const middleware = heroku
+  ? [requireHTTPS, serveStaticFiles]
+  : [serveStaticFiles];

@@ -1,5 +1,4 @@
 import express from 'express';
-import * as path from 'path';
 
 import { resorts } from './resorts';
 import { countries } from './countries';
