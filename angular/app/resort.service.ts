@@ -9,7 +9,9 @@ import {
 } from './interfaces/models';
 
 import { ParamMap } from '@angular/router';
-import { Observable, of } from 'rxjs';
+
+import { Observable } from 'rxjs';
+
 import {
   APIResort,
   APIResorts,

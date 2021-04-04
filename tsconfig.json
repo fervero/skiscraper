@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
+    "outDir": "build",
+    "esModuleInterop": true,
+    "moduleResolution": "Node"
+  },
+  "lib": [
+    "ES2015",
+    "ES2020",
+    "ESNext"
+  ],
+  "include": [
+    "backend/**/*"
+  ],
+  "exclude": [
+    "angular",
+    "dist",
+    "e2e",
+    "node_modules"
+  ],
+  "skipLibCheck": true
+}

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   totalItems: 10,
   resorts: [
     {
