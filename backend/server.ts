@@ -1,35 +1,20 @@
-import { Request, Response } from 'express';
 import express from 'express';
 import * as path from 'path';
 
-import mockResorts from './mock-data/resorts';
-import mockCountries from './mock-data/countries';
-type callback = (argument?: any) => void;
-
-function requireHTTPS(req: Request, res: Response, next: callback): void {
-  if (!req.secure && req.get('x-forwarded-proto') !== 'https') {
-    return res.redirect('https://' + req.get('host') + req.url);
-  }
-
-  next();
-}
+import { resorts } from './resorts';
+import { countries } from './countries';
+import { index } from './index';
+import { middleware } from './middleware';
 
 const app = express();
-app.use(requireHTTPS);
 
-const pathToDist = path.join(__dirname, '..', 'dist', 'skiscraper-front');
+for (const fn of middleware) {
+  app.use(fn);
+}
 
-app.use(express.static(pathToDist));
-
-app.get('/api/resorts', (req: Request, res: Response) => res.send(mockResorts));
-
-app.get('/api/countries', (req: Request, res: Response) =>
-  res.send(mockCountries)
-);
-
-app.get('/*', (req: Request, res: Response) => {
-  res.sendFile('index.html', { root: pathToDist });
-});
+app.get('/api/resorts', resorts);
+app.get('/api/countries', countries);
+app.get('/*', index);
 
 const port = process.env.PORT || 8080;
 
