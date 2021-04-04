@@ -1,4 +1,4 @@
-export const mockResorts = {
+module.exports = {
   totalItems: 10,
   resorts: [
     {
