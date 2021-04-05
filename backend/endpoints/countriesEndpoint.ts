@@ -26,4 +26,4 @@ const dbCountries = (req: Request, res: Response) => {
     });
 };
 
-export const countriesEndpoint = heroku ? staticCountries : dbCountries;
+export const countriesEndpoint = dbCountries;

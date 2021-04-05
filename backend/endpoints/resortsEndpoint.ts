@@ -88,4 +88,4 @@ const dbResorts = (req: Request, res: Response): void => {
     });
 };
 
-export const resortsEndpoint = heroku ? (req: Request, res: Response) => res.send(mockResorts) : dbResorts;
+export const resortsEndpoint = dbResorts;
