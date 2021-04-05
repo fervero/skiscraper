@@ -4,7 +4,9 @@
     "module": "commonjs",
     "outDir": "build",
     "esModuleInterop": true,
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "lib": [
     "ES2015",

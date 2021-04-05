@@ -1,10 +1,10 @@
 import express from 'express';
 
-import { resorts } from './resorts';
-import { countries } from './countries';
-import { index } from './index';
-import { middleware } from './middleware';
-import { connect } from './sql-driver';
+import {resortsEndpoint} from './endpoints/resortsEndpoint';
+import {countriesEndpoint} from './endpoints/countriesEndpoint';
+import {indexEndpoint} from './endpoints/indexEndpoint';
+import {middleware} from './middleware';
+import {connect} from './sql-driver';
 
 console.log('HELLO, WORLD!');
 
@@ -14,11 +14,16 @@ for (const fn of middleware) {
   app.use(fn);
 }
 
-connect();
+console.log('Attempting connection to database');
 
-app.get('/api/resorts', resorts);
-app.get('/api/countries', countries);
-app.get('/*', index);
+connect()
+  .then(() => console.log('Connected to database'))
+  .catch(console.error);
+
+
+app.get('/api/resorts', resortsEndpoint);
+app.get('/api/countries', countriesEndpoint);
+app.get('/*', indexEndpoint);
 
 const port = process.env.PORT || 8080;
 
