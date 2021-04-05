@@ -1,5 +1,5 @@
-import {Table, Column, Model, Sequelize, HasMany} from 'sequelize-typescript';
-import {DataTypes} from 'sequelize';
+import { Table, Column, Model, Sequelize, HasMany } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
 
 const {
   MDB_DATABASE,
@@ -30,7 +30,6 @@ export class Resort extends Model {
   @Column longitude?: string;
 }
 
-
 const sequelize = new Sequelize({
   dialect: 'mariadb',
   database: MDB_DATABASE,
@@ -42,5 +41,4 @@ const sequelize = new Sequelize({
 
 sequelize.addModels([Resort]);
 
-export const connect = () =>
-  sequelize.authenticate();
+export const connect = () => sequelize.authenticate();

@@ -1,7 +1,7 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import mockResorts from '../mock-data/mock-resorts';
-import {Op, OrderItem} from 'sequelize';
-import {Resort} from '../sql-driver';
+import { Op, OrderItem } from 'sequelize';
+import { Resort } from '../sql-driver';
 
 const DEFAULT_PAGE_SIZE = 25;
 const heroku = process.env.ENVIRONMENT === 'heroku';
@@ -19,11 +19,11 @@ const getPagingData = (
   page: string | number | undefined,
   limit: string | number
 ) => {
-  const {count: totalItems, rows} = data;
+  const { count: totalItems, rows } = data;
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItems / +limit);
 
-  return {totalItems, resorts: rows, totalPages, currentPage};
+  return { totalItems, resorts: rows, totalPages, currentPage };
 };
 
 const getSortOrder = (queryParam: string) => {
@@ -35,7 +35,7 @@ const getSortOrder = (queryParam: string) => {
   return [[orderItem, orderDirection] as OrderItem];
 };
 
-const buildFilterClause = ({query}: Request, property: string) => {
+const buildFilterClause = ({ query }: Request, property: string) => {
   const value: string = (query[property] as string) || '';
   const valueArray = value.split(',');
 
@@ -47,8 +47,8 @@ const buildFilterClause = ({query}: Request, property: string) => {
 
   return query[property]
     ? {
-      [Op.or]: clausesArray,
-    }
+        [Op.or]: clausesArray,
+      }
     : {};
 };
 
@@ -59,15 +59,15 @@ const buildFiltersQuery = (req: Request) => {
     buildFilterClause(req, property)
   );
 
-  return filters.reduce((acc, curr) => ({...acc, ...curr}), {});
+  return filters.reduce((acc, curr) => ({ ...acc, ...curr }), {});
 };
 
 const dbResorts = (req: Request, res: Response): void => {
-  const {page, size, sort} = req.query;
+  const { page, size, sort } = req.query;
 
   const condition = buildFiltersQuery(req);
 
-  const {limit, offset} = getPagination(page as string, size as string);
+  const { limit, offset } = getPagination(page as string, size as string);
 
   const query = {
     where: condition,

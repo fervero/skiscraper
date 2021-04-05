@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "format": "prettier --write -l ./backend/**/*.ts"
   },
   "private": true,
   "dependencies": {
