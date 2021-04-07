@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import mockCountries from '../mock-data/mock-countries';
 import { Resort } from '../sql-driver';
-import {Model} from 'sequelize';
+import { Model } from 'sequelize';
 
 const heroku = process.env.ENVIRONMENT === 'heroku';
 
@@ -12,7 +12,10 @@ type ModelType<T extends Model<T>> = Constructor<T> & typeof Model;
 const staticCountries = (req: Request, res: Response) =>
   res.send(mockCountries);
 
-const selectDistinct = (model: ModelType<any>, field: string): Promise<string[]> =>
+const selectDistinct = (
+  model: ModelType<any>,
+  field: string
+): Promise<string[]> =>
   model
     .aggregate(field, 'DISTINCT', { plain: false })
     .then((response: any) =>

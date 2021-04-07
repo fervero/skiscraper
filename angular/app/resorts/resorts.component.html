@@ -4,32 +4,44 @@
   class="datagrid-compact"
 >
   <clr-dg-column [clrDgField]="'country'">
-    <span translate>Country</span>
-    <clr-dg-filter [clrDgFilter]="countryFilter">
-      <app-dg-select-filter
-        #countryFilter
-        [values]="countries$ | async"
-        [param]="country"
-      ></app-dg-select-filter>
-    </clr-dg-filter>
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      <span translate>Country</span>
+      <clr-dg-filter [clrDgFilter]="countryFilter">
+        <app-dg-select-filter
+          #countryFilter
+          [values]="countries$ | async"
+          [param]="country"
+        ></app-dg-select-filter>
+      </clr-dg-filter>
+    </ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'name'">
     <span translate>Name</span>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'region'">
-    <span translate> Region </span>
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      <span translate> Region </span>
+    </ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgSortBy]="'totalSlopes'">
-    <span translate>Total slopes length</span>
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      <span translate>Total slopes length</span>
+    </ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgSortBy]="'blueSlopes'">
-    <span translate>Blue slopes length</span>
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      <span translate>Blue slopes length</span>
+    </ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgSortBy]="'redSlopes'">
-    <span translate>Red slopes length</span>
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      <span translate>Red slopes length</span>
+    </ng-container>
   </clr-dg-column>
   <clr-dg-column>
-    <span translate>Day ski pass price</span>
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      <span translate>Day ski pass price</span>
+    </ng-container>
   </clr-dg-column>
   <clr-dg-row
     *ngFor="let resort of data.resorts; trackBy: trackById"

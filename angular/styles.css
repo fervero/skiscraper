@@ -46,3 +46,7 @@ h1.title-bar a {
 h1.title-bar a:hover {
   text-decoration: none;
 }
+
+.switch-content clr-dg-filter {
+  display: none;
+}
