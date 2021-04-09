@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { isEqual } from 'lodash';
+import { isEqual } from 'lodash-es';
 
 import {
   ClrDatagridComparatorInterface,
