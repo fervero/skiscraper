@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: docker-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: "mariadb"
+      MYSQL_DATABASE: "ski"
+    networks:
+      - docker-service
+    volumes:
+      - maria-data:/data/db
+      - "./sql:/docker-entrypoint-initdb.d"
+
+  node:
+    build: ./
+    container_name: express-api
+    ports:
+      - "80:80"
+    environment:
+      MDB_DATABASE: "ski"
+      MDB_HOST: "mariadb"
+      MDB_PASSWORD: "mariadb"
+      PORT: 80
+      MDB_PORT: 3306
+      MDB_USER: "root"
+    networks:
+      - docker-service
+    depends_on:
+      - mariadb
+
+networks:
+  docker-service:
+    driver: bridge
+
+volumes:
+  maria-data:
+    driver: local
